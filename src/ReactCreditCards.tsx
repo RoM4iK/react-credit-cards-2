@@ -28,7 +28,7 @@ export interface ReactCreditCardsProps {
   preview?: boolean | undefined;
 }
 
-export function ReactCreditCards(props: ReactCreditCardsProps) {
+function ReactCreditCards(props: ReactCreditCardsProps) {
   const {
     acceptedCards = [],
     number,
@@ -48,6 +48,7 @@ export function ReactCreditCards(props: ReactCreditCardsProps) {
   } = props;
 
   const [cardTypes, setCardTypes] = React.useState(setInitialValidCardTypes());
+
   const validCardTypes = React.useMemo(() => {
     if (acceptedCards?.length) {
       return cardTypes.filter((card) => acceptedCards.includes(card));
@@ -147,6 +148,10 @@ export function ReactCreditCards(props: ReactCreditCardsProps) {
   }, [cardOptions.maxLength, cardIssuer, number, preview]);
 
   const cardExpiry = React.useMemo(() => {
+    if (expiry === null || expiry === undefined) {
+      return "••/••";
+    }
+
     const date = typeof expiry === "number" ? expiry.toString() : expiry;
     let month = "";
     let year = "";
@@ -292,3 +297,5 @@ export function ReactCreditCards(props: ReactCreditCardsProps) {
     </div>
   );
 }
+
+export default ReactCreditCards;

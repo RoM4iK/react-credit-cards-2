@@ -1,6 +1,8 @@
-export { ReactCreditCards as default } from "./ReactCreditCards";
+import ReactCreditCards from "./ReactCreditCards";
 export type {
   Focused,
   ReactCreditCardsProps,
   CallbackArgument,
 } from "./ReactCreditCards";
+
+export default ReactCreditCards;
